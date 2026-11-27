@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bookmine | O clube do seu criador favorito e o seu diário de leituras</title>
+<meta name="description" content="Entre nos clubes de leitura dos criadores que você acompanha e registre tudo o que lê. Entre na lista de espera do Bookmine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14110f;--paper:#faf8f4;--lime:#c8f135;--violet:#6f4ff0;--lilac:#ece8ff;--muted:#6b665f;--line:rgba(20,17,15,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;font-size:17px}
+h1,h2,h3,.logo{font-family:'Syne',system-ui,sans-serif;letter-spacing:-.02em;line-height:1.05}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.logo{font-weight:800;font-size:24px;text-decoration:none}
+.logo b{color:var(--violet)}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);border:0;border-radius:99px;padding:13px 26px;font:700 15px 'DM Sans',sans-serif;text-decoration:none;cursor:pointer}
+.btn.lime{background:var(--lime);color:var(--ink)}
+.btn:hover{opacity:.88}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:48px 0 72px}
+.hero h1{font-size:clamp(38px,6vw,68px);font-weight:800;margin-bottom:20px}
+.hero p.lead{color:var(--muted);max-width:30em;margin-bottom:28px;font-size:19px}
+form.wait{display:flex;gap:10px;flex-wrap:wrap;max-width:480px}
+form.wait input,form.wait select{flex:1 1 220px;border:1.5px solid var(--ink);background:#fff;border-radius:99px;padding:13px 20px;font:500 16px 'DM Sans',sans-serif;color:var(--ink)}
+.fine{font-size:13px;color:var(--muted);margin-top:10px}
+
+.mock{background:#fff;border:1.5px solid var(--ink);border-radius:22px;overflow:hidden;box-shadow:8px 8px 0 var(--lime)}
+.mock-top{background:var(--violet);color:#fff;padding:22px}
+.mock-top small{opacity:.8;font-size:13px}
+.mock-top h3{font-size:24px;margin:4px 0 2px}
+.mock-body{padding:18px 22px}
+.plan{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.plan:last-of-type{border-bottom:0}
+.plan span{font-size:14px;color:var(--muted)}
+.plan strong{font-family:'Syne',sans-serif;color:var(--violet)}
+.reading{background:var(--lilac);border-radius:14px;padding:12px 14px;font-size:14px;margin-top:10px}
+.reading b{display:block}
+
+.why{padding:64px 0;border-top:1px solid var(--line)}
+.why h2,.how h2,.creators h2,.join h2{font-size:clamp(30px,4.5vw,46px);font-weight:800;margin-bottom:34px;max-width:15em}
+.rows{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
+.row{padding:22px 0;border-top:1px solid var(--line)}
+.row h3{font-size:21px;margin-bottom:8px}
+.row p{color:var(--muted)}
+
+.demo{padding:12px 0 64px}
+.demo h2{font-size:28px;font-weight:800;margin-bottom:6px}
+.demo p.fine{margin:0 0 20px}
+.clubs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.club{border-radius:18px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.club h3{font-size:19px}
+.club small{font-size:13px;opacity:.75}
+.club b{font-family:'Syne',sans-serif}
+.c1{background:#ece8ff}.c2{background:#ffe9df}.c3{background:#def7e6}.c4{background:#dff1fb}
+
+.how{padding:64px 0;border-top:1px solid var(--line)}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.steps li{counter-increment:s;padding-top:16px;border-top:3px solid var(--ink)}
+.steps li::before{content:counter(s);font:800 30px 'Syne',sans-serif;color:var(--violet);display:block;margin-bottom:6px}
+.steps h3{font-size:20px;margin-bottom:6px}
+.steps p{color:var(--muted);font-size:16px}
+
+.creators{background:var(--ink);color:var(--paper);border-radius:28px;padding:56px 44px;margin-bottom:64px}
+.creators p{max-width:34em;opacity:.85;margin-bottom:26px}
+.creators ul{list-style:none;display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.creators li{border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:7px 16px;font-size:14px}
+
+.join{padding:0 0 72px}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:14px}
+
+@media(max-width:800px){
+ .hero{grid-template-columns:1fr;padding-top:24px}
+ .rows,.steps{grid-template-columns:1fr}
+ .clubs{grid-template-columns:1fr 1fr}
+ .creators{padding:40px 24px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header>
+  <a class="logo" href="#">book<b>mine</b></a>
+  <a class="btn" href="#lista">Entrar na lista</a>
+ </header>
+
+ <section class="hero">
+  <div>
+   <h1>O clube do seu criador favorito e o seu diário de leituras.</h1>
+   <p class="lead">Assine os clubes de quem você acompanha no BookTok, no YouTube e no Instagram. Registre o que lê, dê sua nota e veja quem mais está lendo o mesmo livro.</p>
+   <form class="wait" action="https://formspree.io/f/SEU_ID_AQUI" method="POST">
+    <input type="email" name="email" placeholder="Seu melhor e-mail" required aria-label="Seu e-mail">
+    <select name="perfil" aria-label="Você é">
+     <option value="leitor">Sou leitor</option>
+     <option value="criador">Sou criador</option>
+    </select>
+    <button class="btn lime" type="submit">Quero entrar na lista</button>
+   </form>
+   <p class="fine">De graça para ler. Você só paga se assinar um clube.</p>
+  </div>
+  <div class="mock" aria-label="Exemplo de página de clube">
+   <div class="mock-top"><small>Clube de exemplo</small><h3>Leituras da Mari</h3><small>por @maribooks · 2,3 mil membros</small></div>
+   <div class="mock-body">
+    <div class="plan"><div><strong>Básico</strong><br><span>Fórum e votação do livro</span></div><strong>R$19/mês</strong></div>
+    <div class="plan"><div><strong>Plus</strong><br><span>Lives mensais e leitura antecipada</span></div><strong>R$35/mês</strong></div>
+    <div class="reading"><b>Lendo agora no clube</b>O Nome do Vento, capítulos 8 a 15</div>
+   </div>
+  </div>
+ </section>
+
+ <section class="why">
+  <h2>Leitura em grupo com quem você já admira.</h2>
+  <div class="rows">
+   <div class="row"><h3>Clubes de criadores</h3><p>Escolha o clube e o plano pelo que cada criador oferece: fórum, lives, leitura antecipada, conversa direta.</p></div>
+   <div class="row"><h3>Diário de leituras</h3><p>Lista de espera, lendo agora, lidos e resenhas. Veja também o diário dos seus amigos.</p></div>
+   <div class="row"><h3>Livro com endereço</h3><p>Em cada página de livro você vê as notas da comunidade e em quais clubes ele está sendo lido agora.</p></div>
+   <div class="row"><h3>Pagamento do jeito brasileiro</h3><p>Preços em reais e pagamento por Pix. Sem cartão internacional e sem conversão de moeda.</p></div>
+  </div>
+ </section>
+
+ <section class="demo">
+  <h2>Clubes que você poderá encontrar</h2>
+  <p class="fine">Exemplos ilustrativos. Os clubes reais chegam com os primeiros criadores parceiros.</p>
+  <div class="clubs">
+   <div class="club c1"><h3>Leituras da Mari</h3><div><small>Fantasia</small><br><b>a partir de R$19/mês</b></div></div>
+   <div class="club c2"><h3>Noites de Terror</h3><div><small>Terror</small><br><b>a partir de R$15/mês</b></div></div>
+   <div class="club c3"><h3>Clube Feminista</h3><div><small>Não ficção</small><br><b>a partir de R$25/mês</b></div></div>
+   <div class="club c4"><h3>Ficção Científica</h3><div><small>Sci-fi</small><br><b>a partir de R$22/mês</b></div></div>
+  </div>
+ </section>
+
+ <section class="how">
+  <h2>Como vai funcionar</h2>
+  <ol class="steps">
+   <li><h3>Encontre seu clube</h3><p>Navegue por gênero, preço e benefícios. Teste uma prévia gratuita do fórum antes de assinar.</p></li>
+   <li><h3>Leia junto</h3><p>Vote no próximo livro, discuta por capítulo com aviso de spoiler e participe das lives.</p></li>
+   <li><h3>Registre e compartilhe</h3><p>Dê sua nota, escreva a resenha e acompanhe sua meta de leitura do ano.</p></li>
+  </ol>
+ </section>
+
+ <section class="creators" id="criadores">
+  <h2>Você tem um clube ou uma audiência de leitores?</h2>
+  <p>Crie seu clube sem pagar nada. Defina seus planos, receba as assinaturas pela plataforma e acompanhe o histórico de leitura e o engajamento dos seus membros.</p>
+  <ul><li>Grátis para criar</li><li>Você define planos e preços</li><li>Dados dos seus membros</li><li>Lives integradas</li></ul>
+  <a class="btn lime" href="#lista">Quero criar meu clube</a>
+ </section>
+
+ <section class="join" id="lista">
+  <h2>Entre na lista de espera.</h2>
+  <form class="wait" action="https://formspree.io/f/SEU_ID_AQUI" method="POST">
+   <input type="email" name="email" placeholder="Seu melhor e-mail" required aria-label="Seu e-mail">
+   <select name="perfil" aria-label="Você é">
+    <option value="leitor">Sou leitor</option>
+    <option value="criador">Sou criador</option>
+   </select>
+   <button class="btn" type="submit">Entrar na lista</button>
+  </form>
+  <p class="fine">Avisamos quando abrirmos as primeiras vagas. Sem spam.</p>
+ </section>
+
+ <footer>© 2026 Bookmine. Projeto em desenvolvimento.</footer>
+</div>
+</body>
+</html>
